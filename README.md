@@ -16,6 +16,7 @@ We also use **C++**, **Rust**, **C**, and **Assembly**. These scripting language
 - **ModernOS Alpha (v0.2.0)** — Released in **Early November** but really basic. *(Released November 7th, public testing.)*  
 - **ModernOS Beta (v0.3.0)** — Released in **Later November** *(around the 8th, public testing.)*  
 - **ModernOS New-UI (v0.4.0)** — Released on **November 10th** with new UI but really errored and unsimple. *Public testing allowed!*
+- **ModernOS Zero Dot99 First Beta (v0.98)** - Readme on **Nov 14**, ISO on **Nov 14**. New UI but not too smooth. *Public Testing Allowed*
 
 ### 🧭 Public, Real Versions
 > **ModernOS (v1.0.0)** — *Releasing soon, no name yet!*

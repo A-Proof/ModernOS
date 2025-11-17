@@ -31,10 +31,8 @@ For versions **0.2.0 – 0.4.0**
 qemu-system-x86_64 -cdrom ModernOS.iso -boot d -m 1024 -vga std
 ```
 
-For versions **0.5.0+**  
-```bash
-qemu-system-x86_64 -cdrom ModernOS.iso -boot d -m 1024 -vga virtio -device e1000 -soundhw ac97
-```
+For versions **0.5.0+**
+Just **look at their guides.**
 
 ---
 

@@ -1,258 +1,131 @@
-# ModernOS v1.0.0
-
-<div align="center">
-
-![ModernOS](https://img.shields.io/badge/ModernOS-v1.0.0-blue?style=for-the-badge)
-![Java](https://img.shields.io/badge/Java-17+-orange?style=for-the-badge&logo=java)
-![JavaFX](https://img.shields.io/badge/JavaFX-21-green?style=for-the-badge)
-![HTML6](https://img.shields.io/badge/HTML6-Ready-purple?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-
-**Next-Generation Desktop Operating System with HTML6 Support**
-
-[Features](#features) • [Installation](#installation) • [Building](#building) • [Apps](#applications) • [HTML6](#html6-specification)
-
-</div>
+# 🧠 **ModernOS**  
+*A next-generation experimental operating system built for speed, clarity, and modular design.*
 
 ---
 
-## 🌟 Overview
-
-ModernOS is a revolutionary desktop operating system built with JavaFX, featuring HTML6 browser with Grain auto-converter, AI integration, and 10 production-ready applications.
-
-## ✨ Key Features
-
-- 🎨 **50 Professional Vector Icons** (5 sizes each, no emojis)
-- 🌐 **HTML6 Browser** with 60+ semantic tags
-- 🌾 **Grain Auto-Converter** (HTML → HTML6)
-- 🤖 **Ollama AI Integration** (auto-install)
-- 📦 **Core Package Manager** (GitHub + system packages)
-- 🎵 **Music Player** with MediaPlayer
-- 📷 **Photo Gallery** with viewer
-- ⚙️ **Full System Settings**
-- 🔔 **Notification Center**
-- 🚀 **Rainboot X Bootloader**
+## 🧩 **What it is**
+ModernOS is a closed source operating system made with tools such as **IDEs**, **QEMU**, and **Make**.  
+We also use **C++**, **Rust**, **C**, and **Assembly**. These scripting languages are corely needed for many operations.
 
 ---
 
-## 📦 Quick Start
+## 🚀 **Official Releases**
 
-### Option 1: Run Pre-built
+### 🧱 Beta Versions
+- **ModernOS Seed (v0.0.1)** — Was never released but final testing was on **November 4th**.  
+- **ModernOS Alpha (v0.2.0)** — Released in **Early November** but really basic. *(Released November 7th, public testing.)*  
+- **ModernOS Beta (v0.3.0)** — Released in **Later November** *(around the 8th, public testing.)*  
+- **ModernOS New-UI (v0.4.0)** — Released on **November 10th** with new UI but really errored and unsimple. *Public testing allowed!*
+- **ModernOS Zero Dot99 First Beta (v0.98)** - Readme on **Nov 14**, ISO on **Nov 15-16**. New UI, very smooth. *Public Testing Allowed*
 
+### 🧭 Public, Real Versions
+> **ModernOS (v1.0.0)** — *Releasing soon, no name yet!*
+
+---
+
+## 💽 **Running The OS**
+
+### 🧰 QEMU Virtual Machines
+For versions **0.2.0 – 0.4.0**  
 ```bash
-# Download and extract
-wget https://github.com/modernos/releases/ModernOS-v1.0.0.zip
-unzip ModernOS-v1.0.0.zip
-
-# Run
-./ModernOS.sh          # macOS/Linux
-ModernOS.bat           # Windows
-java -jar ModernOS.jar # Any platform
+qemu-system-x86_64 -cdrom ModernOS.iso -boot d -m 1024 -vga std
 ```
 
-### Option 2: Build from Source
+For versions **0.5.0+**
+Just **look at their guides.**
 
+---
+
+### 💻 Running on Hardware
+
+If you are on a **Windows Computer, MacBook with Apple Silicon, or any Qualcomm PC**, you are **ARM64**.  
+If you are on **anything else**, you are **x86_64**.
+
+---
+
+#### ⚙️ **ARM_64 Real Hardware**
+
+1. Connect a **USB drive** to your PC/Laptop.  
+2. Run:  
+   ```bash
+   sudo dd if=ModernOS.iso of=/dev/diskN bs=4M status=progress
+   sync
+   ```
+   Replace **/dev/diskN** with your USB system file disk name.  
+3. Insert the **SD/USB** card in the ARM board.  
+   **Good news:** You can plug it into a port!  
+4. Power it on.  
+
+If the board supports **UEFI** (Raspberry Pi 4+ does), it should boot directly.  
+Otherwise, you’ll need a small ARM bootloader like **U-Boot** to load the kernel.  
+
+Only download ***ARM_64*** releases on these.  
+*(Beta versions are x86_64.)*
+
+If **on Mac**, good news again!  
+After plugging it in, instead of doing BIOS and everything, go to:  
+> **Settings → General → Startup Settings**  
+
+If your computer recognizes it, just click on it and **boot it!**  
+It may have instructions though.
+
+---
+
+#### ⚙️ **x86_64 Real Hardware**
+
+1. Connect a **USB drive** to your PC/Laptop.  
+2. Run:  
+   ```bash
+   sudo dd if=ModernOS.iso of=/dev/diskN bs=4M status=progress
+   sync
+   ```
+   Replace **/dev/diskN** with your USB system file disk name.  
+3. Plug the USB into your computer.  
+   *Adapters and USB Hubs do work!*  
+
+If on **Intel Mac**, type:  
 ```bash
-# Clone
-git clone https://github.com/modernos/modernos.git
-cd modernos
-
-# Generate icons
-python3 generate_vector_icons.py
-
-# Build and run
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-mvn clean javafx:run
+sudo bless --mount /Volumes/ModernOS --setBoot --nextonly
+sudo shutdown -r now
 ```
 
-### Requirements
-
-- Java 17+
-- Maven 3.6+
-- 2GB RAM
-- 500MB disk space
-
----
-
-## 🔨 Building ISO/DMG
-
+If on **Linux**, type:  
 ```bash
-# Make script executable
-chmod +x build-iso.sh
-
-# Build
-./build-iso.sh
-
-# Output in dist/
-# - ModernOS-v1.0.0.dmg (macOS)
-# - ModernOS-v1.0.0.iso (Linux)
-# - ModernOS-v1.0.0.zip (Windows)
+sudo grub-reboot "hd1,gpt1"
+sudo reboot
 ```
+*(Assuming your USB disk name is `hd1`, otherwise change it to your USB disk’s name.)*
 
-### ISO Build Process
-
-The build script:
-1. ✓ Checks dependencies (Java, Maven)
-2. ✓ Cleans previous builds
-3. ✓ Generates 50 vector icons
-4. ✓ Builds JAR with Maven
-5. ✓ Creates ISO structure
-6. ✓ Generates launchers (sh/bat)
-7. ✓ Creates bootable image
-8. ✓ Generates SHA256 checksums
-
----
-
-## 🚀 Applications
-
-| App | Description | Features |
-|-----|-------------|----------|
-| 💬 **Messages** | Email client | IMAP/SMTP support |
-| 🌐 **Browser** | HTML6 browser | Grain converter, HTML5.3 fallback |
-| 📁 **Files** | File manager | System integration |
-| 🌊 **Wave** | Python IDE | Syntax highlighting, execution |
-| 🧮 **Calculator** | Calculator | Scientific operations |
-| 📷 **Photos** | Photo gallery | Grid view, full-screen viewer, import |
-| 🎵 **Music** | Music player | Playlists, MediaPlayer, import |
-| ⚙️ **Settings** | System config | Appearance, Browser, Network, Audio |
-| 🤖 **Host** | AI hosting | Ollama auto-install, model management |
-| 📦 **Core** | Package manager | GitHub + system packages |
-
----
-
-## 🌾 HTML6 Specification
-
-### New Tags (60+)
-
-**Layout**: `<app>`, `<view>`, `<card>`, `<grid>`, `<flex>`, `<container>`
-
-**Components**: `<button>`, `<toggle>`, `<tabs>`, `<modal>`, `<toast>`, `<dropdown>`
-
-**Data**: `<table>`, `<list>`, `<tree>`, `<chart>`, `<timeline>`
-
-**Forms**: `<form>`, `<field>`, `<upload>`, `<date>`, `<time>`, `<color>`
-
-**Advanced**: `<ai>`, `<voice>`, `<ar>`, `<vr>`, `<3d>`, `<neural>`, `<quantum>`
-
-### Attributes
-
-**Reactivity**: `@click`, `@input`, `:bind`, `:model`, `:class`, `:style`
-
-**Conditionals**: `:if`, `:else`, `:show`, `:for`
-
-**States**: `:loading`, `:error`, `:required`, `:pattern`
-
-### Example
-
-```html
-<!DOCTYPE html6>
-<html>
-<body>
-    <app>
-        <card>
-            <h1>Welcome to HTML6</h1>
-            <button @click="loadData()" :loading="isLoading">
-                Load Data
-            </button>
-        </card>
-        
-        <grid cols="3" gap="20">
-            <card :for="item in items">
-                <h3>{{ item.title }}</h3>
-            </card>
-        </grid>
-    </app>
-</body>
-</html>
-```
-
----
-
-## 🌐 Browser Settings
-
-**Settings → Browser** to configure:
-
-- **HTML Version**: HTML6 / HTML5.3 (Legacy)
-- **Grain Converter**: Auto-conversion toggle
-- **HTML6 Features**: Reactivity, Components, AI, AR/VR
-- **Migration**: Switch to HTML5.3 mode
-
----
-
-## 🧪 Testing
-
-### Run Application
+If you are on a **Windows/Microsoft Computer without Qualcomm**, it’s a bit easier to boot it:  
 ```bash
-mvn javafx:run
+sudo grub-reboot "hd1,gpt1"
+sudo reboot
 ```
 
-### Build Package
-```bash
-mvn clean package
-```
-
-### QEMU Testing
-```bash
-# Test ISO
-qemu-system-x86_64 -cdrom dist/ModernOS-v1.0.0.iso -m 2048
-
-# With acceleration (macOS)
-qemu-system-x86_64 -cdrom dist/ModernOS-v1.0.0.iso -m 2048 -accel hvf
-```
+And now the **OS is installed!**
 
 ---
 
-## 📁 Project Structure
+## 🧠 **Code**
 
-```
-modernos/
-├── src/main/java/com/modernos/
-│   ├── ModernOS.java              # Main app
-│   ├── AppWindow.java             # Window manager
-│   ├── NotificationCenter.java    # Notifications
-│   ├── AppLibrary.java            # App launcher
-│   ├── Bootloader.java            # Boot sequence
-│   ├── apps/                      # Applications
-│   │   ├── BrowserApp.java
-│   │   ├── MusicApp.java
-│   │   ├── PhotosApp.java
-│   │   ├── SettingsApp.java
-│   │   ├── HostApp.java
-│   │   └── CoreApp.java
-│   └── browser/                   # HTML6 & Grain
-│       ├── HTML6Spec.java
-│       └── GrainConverter.java
-├── src/main/resources/
-│   ├── icons/                     # 50 vector icons
-│   └── styles.css
-├── generate_vector_icons.py       # Icon generator
-├── build-iso.sh                   # ISO builder
-├── pom.xml                        # Maven config
-└── README.md
-```
+**RK.rubyKit** is a Python library to code apps.  
+It is not fully working however.  
+
+In older versions *(0.3 & 0.4)*, **TinkerCode** had a programming language called `.wallpaper(s)`.  
+However, they didn’t work and are removed.
 
 ---
 
-## 📄 License
+## 🤖 **AI Integration**
 
-MIT License
-
----
-
-## 🙏 Credits
-
-- **JavaFX** - UI framework
-- **Jsoup** - HTML parsing
-- **Ollama** - AI integration
-- **Pillow** - Icon generation
+- Assistant models made from scratch will be available in the **Full Release**.  
+- GPT models will also be included as alternatives, *if we get permission.*
 
 ---
 
-<div align="center">
+## ⚠️ **License**
 
-**Made with ❤️ by the ModernOS Team**
+ModernOS is a **closed-source project**.  
+Binaries may be freely downloaded and tested, but redistribution or reverse engineering of the kernel is prohibited.  
 
-[GitHub](https://github.com/modernos) • [Docs](https://docs.modernos.dev)
-
-</div>
-# modernos-source
+© **2025 ModernOS Development Team. All rights reserved.**
